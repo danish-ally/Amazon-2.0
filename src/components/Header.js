@@ -5,7 +5,12 @@ import {
   ShoppingCartIcon,
 } from "@heroicons/react/outline";
 
+import { signIn, signOut, useSession } from "next-auth/client";
+
 function Header() {
+
+  const [session] = useSession();
+
   return (
     <header>
       {/* top  nav*/}
@@ -29,8 +34,10 @@ function Header() {
         </div>
         {/* Right  */}
         <div className="text-white flex items-center text-xs space-x-6 mx-6 whitespace-nowrap">
-          <div className="link">
-            <p>Hello Danish Ali</p>
+          <div onClick={!session ? signIn : signOut} className="link">
+            <p>
+              {session ? `Hello, ${session.user.name}` : 'Sign In'}
+            </p>
             <p className="font-extrabold md:text-sm">Account & Lists</p>
           </div>
           <div className="link">
@@ -52,7 +59,7 @@ function Header() {
       {/* bottom  nav*/}
       <div className="flex items-center space-x-3  p-2 pl-6 bg-amazon_blue-light text-white text-sm">
         <p className="link flex items-center sm: text-xs">
-          <MenuIcon className="h-6 mr-1"/>
+          <MenuIcon className="h-6 mr-1" />
           All
         </p>
         <p className="link sm: text-xs">Prime Video</p>
