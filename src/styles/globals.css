@@ -18,5 +18,8 @@
   .sub {
     @apply text-2xl font-bold;
   }
+  .style {
+    @apply text-green-500 h-10;
+  }
   
 }
