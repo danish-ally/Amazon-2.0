@@ -11,6 +11,7 @@ const stripePromise = loadStripe(process.env.stripe_public_key);
 function Checkout() {
   const items = useSelector(selectItems);
   const total = useSelector(selectTotal);
+  const Total = total.toFixed(2);
   const [session] = useSession();
 
   // const Total = Math.round(total);
@@ -76,7 +77,7 @@ function Checkout() {
             <>
               <h2 className=" sub whitespace-nowrap">
                 Subtotal ({items.length} items) :
-                <span className="font-bold">${total}</span>
+                <span className="font-bold">${Total}</span>
               </h2>
 
               <button
